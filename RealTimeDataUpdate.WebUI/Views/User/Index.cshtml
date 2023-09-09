@@ -1,0 +1,59 @@
+﻿@model IEnumerable<RealTimeDataUpdate.Entity.Concrete.ActivityLog>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.9/signalr.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+
+<div class="container mt-5 mb-5">
+    <!-- Diğer içerikler -->
+   <p id="username">@ViewBag.UserName</p>
+    <button type="submit" class="btn btn-danger"  id="logout">Çıkış Yap</button>
+
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-6">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Log ID</th>
+                        <th>Status</th>
+                        <th>Check Time</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var log in Model)
+                    {
+                        <tr>
+                            <td>@log.Id</td>
+                            <td class="@(log.Status ? "active" : "inactive")">@(log.Status ? "Active" : "Inactive")</td>
+
+                            <td>@log.CheckTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+
+<style>
+    .active {
+        color: green; /* Yeşil renk */
+    }
+
+    .inactive {
+        color: red; /* Kırmızı renk */
+    }
+</style>
+
